@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://contentful.github.io/ui-extensions-sdk/cf-extension.css">
+    <script src="https://unpkg.com/contentful-ui-extensions-sdk@3"></script>
+  </head>
+
+  <body>
+    <input type="checkbox" class="checkbox-extension" id='checkbox'>
+    <label for="checkbox" class="checkbox-label"></label>
+    <script>
+      window.contentfulExtension.init(function(sdk) {
+        sdk.window.startAutoResizer();
+        const inputEl = document.querySelector('.checkbox-extension');
+        const labelEl = document.querySelector('.checkbox-label');
+        const fieldValue = sdk.field.getValue() || false;
+
+        inputEl.checked = fieldValue;
+        labelEl.innerHTML = fieldValue ? "Yes" : "No";
+
+        inputEl.addEventListener("change", function(e){
+          labelEl.innerHTML = e.target.checked ? "Yes" : "No";
+          sdk.field.setValue(e.target.checked);
+        })
+      });
+    </script>
+  </body>
+</html>

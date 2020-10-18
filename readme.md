@@ -1,0 +1,1 @@
+# Contentful boolean type checkbox
